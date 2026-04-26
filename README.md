@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-=======
+
 # health-fitness-soap-system
 >>>>>>> 47f91e09be6a27dfaced6b0c9e893aa2351382d1
 # 🏥 Personal Health & Fitness Calculator (SOAP Web Service)
