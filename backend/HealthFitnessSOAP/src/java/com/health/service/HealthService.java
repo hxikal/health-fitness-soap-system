@@ -76,8 +76,55 @@ public class HealthService {
             @WebParam(name = "screenBeforeSleep") boolean screenBeforeSleep) {
 
         // TODO: Sleep Quality person fills this logic
-        return "Sleep Quality module is not completed yet.";
-    }
+        int score = 100;
+
+        // Sleep duration
+        if (sleepHours < 6) {
+            score -= 25;
+        } else if (sleepHours < 7) {
+            score -= 10;
+        }
+
+        // Wake up interruptions
+        if (wakeUpCount > 2) {
+            score -= 20;
+        }
+
+        // Caffeine effect
+        if (caffeineBeforeSleep) {
+            score -= 15;
+        }
+
+        // Screen exposure
+        if (screenBeforeSleep) {
+            score -= 10;
+        }
+
+        // Category
+        String category;
+        if (score >= 80) {
+            category = "Good Sleep";
+        } else if (score >= 50) {
+            category = "Moderate Sleep";
+        } else {
+            category = "Poor Sleep";
+        }
+
+        // Recommendation
+        String recommendation;
+
+        if (category.equals("Good Sleep")) {
+            recommendation = "Keep maintaining your current sleep habits.";
+        } else if (category.equals("Moderate Sleep")) {
+            recommendation = "Try to improve sleep consistency and reduce screen time.";
+        } else {
+            recommendation = "Increase sleep duration and avoid caffeine before bedtime.";
+        }
+
+        return "Sleep Score: " + score +
+               "\nCategory: " + category +
+               "\nRecommendation: " + recommendation;
+            }
 
     @WebMethod(operationName = "estimateStressLevel")
     public String estimateStressLevel(
